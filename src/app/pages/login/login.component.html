@@ -1,0 +1,11 @@
+<div class="container">
+  <form (ngSubmit)="submit(f)" #f="ngForm" class="w-50 mx-auto text-center">
+    <input type="text" class="form-control mt-3"
+           placeholder="Username" name="username" [(ngModel)]="username">
+
+    <input type="password" class="form-control mt-3"
+           placeholder="Password" name="cognome" [(ngModel)]="password">
+
+    <button class="btn btn-success mt-3">Login</button>
+  </form>
+</div>
