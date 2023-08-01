@@ -1,5 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
+import {Component} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,21 +8,26 @@ import {NgForm} from "@angular/forms";
 })
 export class RegisterComponent {
 
-  generi:string[] = ['uomo','donna','altro'];
+  form!:FormGroup;
+  gender:string[] = ["uomo", "donna", "altro",]
 
-  @ViewChild('form',{static:true}) form!:NgForm;
-
-  submit(form:NgForm) {
-    console.log(form);
-    console.log(form.form.value);
-    this.form.reset();
-  }
-
+  constructor( private fb: FormBuilder){}
 
   ngOnInit(){
-    this.form.statusChanges?.subscribe(status => console.log(status)//valid | invalid
-    )
-
+    this.form = this.fb.group({
+      name: this.fb.control(null),
+      surname: this.fb.control(null),
+      password: this.fb.control(null),
+      password2: this.fb.control(null),
+      gender: this.fb.control([]),
+      image: this.fb.control(null),
+      biography: this.fb.control(null),
+      username: this.fb.control(null),
+    })
   }
 
+  sendUser(){
+    console.log(this.form.value);
+    this.form.reset()
+  }
 }
